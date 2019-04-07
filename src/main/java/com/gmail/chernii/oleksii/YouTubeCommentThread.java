@@ -23,17 +23,6 @@ public class YouTubeCommentThread {
         this.maxSize = maxSize;
     }
 
-    private void initialize() {
-        try {
-            List<String> scopes = Lists.newArrayList("https://www.googleapis.com/auth/youtube.force-ssl");
-            Credential credential = Auth.authorize(scopes, "commentthread");
-            youTube = new YouTube.Builder(Auth.HTTP_TRANSPORT, Auth.JSON_FACTORY, credential)
-                    .setApplicationName("comment-listener").build();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public List<CommentThread> getCommentThreadList() {
         initialize();
         List<CommentThread> list = null;
@@ -50,5 +39,16 @@ public class YouTubeCommentThread {
             e.printStackTrace();
         }
         return list;
+    }
+
+    private static void initialize() {
+        try {
+            List<String> scopes = Lists.newArrayList("https://www.googleapis.com/auth/youtube.force-ssl");
+            Credential credential = Auth.authorize(scopes, "commentthread");
+            youTube = new YouTube.Builder(Auth.HTTP_TRANSPORT, Auth.JSON_FACTORY, credential)
+                    .setApplicationName("comment-listener").build();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -7,7 +7,7 @@ import java.util.Scanner;
 /**
  * Created by Space on 04.04.2019.
  */
-public class Main {
+public class ConsoleYoutubeApp {
     public static void main(String[] args) throws IOException {
         String videoID = getVideoID();
         YouTubeComments youTubeComments = new YouTubeComments(videoID, 10L);
